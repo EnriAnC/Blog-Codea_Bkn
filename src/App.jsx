@@ -52,11 +52,11 @@ function App() {
         <main className="container" id="main" style={{paddingTop: "56px"}}>
           <Routes>
             <Route path="/" element={ <Inicio articulos={articulos} /> } />
-            <Route path="crear-articulo" element={ <SobreMi /> } />
-            <Route path="sobre-mi" element={ <NuevoArticulo /> } />
-            <Route path="articulo/:id" element={ <Articulo articulos={articulos} /> } />
+            <Route path="/crear-articulo" element={ <SobreMi /> } />
+            <Route path="/sobre-mi" element={ <NuevoArticulo /> } />
+            <Route path="/articulo/:id" element={ <Articulo articulos={articulos} /> } />
           </Routes>
-        </main>
+        </main> 
       <Footer />
     </>
   )

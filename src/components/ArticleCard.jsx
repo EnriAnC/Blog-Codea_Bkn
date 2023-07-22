@@ -1,0 +1,54 @@
+import React from 'react'
+import { Link, useNavigate } from 'react-router-dom';
+import { flushSync } from 'react-dom';
+
+const Card = ({articulo}) => {
+
+    let { id, title, description, img, author, date, tags, likes, comments } = articulo;
+
+    const navigate = useNavigate();
+    
+    const handleCardClick = (ev) => {
+        if (!document.startViewTransition) return;
+        ev.preventDefault();
+    
+        document.startViewTransition(() => {
+            flushSync(() => {
+                navigate(`articulo/${id}`);
+            });
+        });
+    } 
+    
+    return (
+        <Link
+            className="nav-link active" 
+            to={`articulo/${id}`}
+            onClick={handleCardClick}>
+            <div className="card p-0 " style={{cursor: "pointer", height:"400px", width:"100%"}}>
+                <img src={img} 
+                    className="img-articulo-size card-img-top" alt={img} 
+                    style={{
+                        viewTransitionName: `blog-${id}`,
+                    }}/>
+
+                <h5 className='card-title px-3 pt-2' style={{viewTransitionName:`title-${id}`}}>{title}</h5>
+                <div className="card-body">
+                    <p className="card-text"
+                        style={{
+                            viewTransitionName: `body-${id}`,
+                        }}>
+                            {description}
+                    </p>
+                    
+                </div>
+                <div className="card-footer d-flex justify-content-between">
+                    <span>{author}</span> <span>{date}</span>
+                </div>
+            </div>
+        </Link>
+        
+
+    )
+}
+
+export default Card

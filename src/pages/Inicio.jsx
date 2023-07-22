@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react'
-import Card from '../components/Card'
+import Card from '../components/ArticleCard'
 import { Link, useNavigate } from 'react-router-dom'
-import { flushSync } from 'react-dom';
 
 const Inicio = ({articulos}) => {
 
-  const navigate = useNavigate()
 
   return (
     <div className='py-2' id='articles-container'>
@@ -13,22 +11,7 @@ const Inicio = ({articulos}) => {
         <h2>Articulos recientes</h2>
         <div className="grid-width-responsive-260px400px">
             {Object.values(articulos).map(articulo=>(
-                <Link key={articulo.id} 
-                  className="nav-link active" 
-                  to={`articulo/${articulo.id}`}
-                  onClick={(ev) => {
-                    if (!document.startViewTransition) return 
-                    ev.preventDefault();
-                    
-                    document.startViewTransition(() => {
-                      flushSync(() => {
-                        navigate(`articulo/${articulo.id}`);
-                      });
-                    });
-                  }}>
-                    <Card articulo={articulo}/>
-                </Link>
-                
+                <Card key={articulo.id} articulo={articulo}/>
             ))}
         </div>
 

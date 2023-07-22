@@ -1,8 +1,11 @@
 import React from 'react'
+import FormBlog from '../components/FormBlog'
 
 const NuevoArticulo = () => {
   return (
-    <div>NuevoArticulo</div>
+    <>
+      <FormBlog />
+    </>
   )
 }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom'; // Importa useParams para obtener el ID del artículo desde la URL
 
 const Articulo = ({ articulos }) => {
@@ -13,20 +13,27 @@ const Articulo = ({ articulos }) => {
     return <div>El artículo no existe.</div>;
   }
 
+  useEffect(()=>{
+    window.scrollTo({top:0})
+  },[])
+
   // Extrae los detalles del artículo
   const { title, description, body, img, author, date, tags, likes, comments } = articulo;
 
   return (
-    <div>
-      <h5 className='mt-3 mx-3 ' style={{viewTransitionName:`title-${id}`, textAlign:"center"}}>{title}</h5>
-      <div className='row py-3 px-5'>
+    <>
+      <h5 className='mt-3 mx-3 fs-2' style={{viewTransitionName:`title-${id}`, textAlign:"center"}}>{title}</h5>
+      <div className='row gx-0 gap-4 py-3'>
         <img
-          className='img-articulo-size object-fit-cover d-inline-block col'
-          src={`../../../bg-x.png`} 
+          className='img-articulo-size col-12 col-md-6'
+          src={`../${img}`} 
           alt="imagen_articulo" 
-          style={{viewTransitionName: `blog-${id}`, height:"220px"}}/>
-        <p className='col fs-3  '>{description}</p>
-        <p className='fs-4 p-4'>{body}</p>
+          style={{viewTransitionName: `blog-${id}`, minHeight:"220px"}}/>
+        <p className='col fs-3'
+          style={{
+            viewTransitionName: `body-${id}`,
+        }}>{description}</p>
+        <p className='fs-4'>{body}</p>
         <p>
             <span>{author}</span> 
             <span>{date}</span>
@@ -35,7 +42,7 @@ const Articulo = ({ articulos }) => {
             {/* <span>{comments}</span>0 */}
         </p>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -49,11 +49,11 @@ function App() {
   return (
     <>
       <Navbar />
-        <main className="container" id="main" style={{paddingTop: "56px"}}>
+        <main className="container-sm" id="main" style={{paddingTop: "56px"}}>
           <Routes>
             <Route path="/" element={ <Inicio articulos={articulos} /> } />
-            <Route path="/crear-articulo" element={ <SobreMi /> } />
-            <Route path="/sobre-mi" element={ <NuevoArticulo /> } />
+            <Route path="/crear-articulo" element={ <NuevoArticulo /> } />
+            <Route path="/sobre-mi" element={ <SobreMi /> } />
             <Route path="/articulo/:id" element={ <Articulo articulos={articulos} /> } />
           </Routes>
         </main> 

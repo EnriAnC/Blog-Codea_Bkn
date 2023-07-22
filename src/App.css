@@ -104,12 +104,12 @@
 } */
 
 
-::view-transition-old(video) {
+::view-transition-old(root) {
   /* Don't show the frozen old view */
   display: none;
 }
 
-::view-transition-new(video) {
+::view-transition-new(root) {
   /* Don't fade the new view in */
   animation: none;
 }

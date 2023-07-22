@@ -9,7 +9,7 @@ const Card = ({articulo}) => {
     return (
 
         <div className="card p-0 " style={{cursor: "pointer", height:"400px", width:"100%"}}>
-            <img src={img ? img : "../../public/bg-x.png"} 
+            <img src={img ? img : "/bg-x.png"} 
                 className="img-articulo-size card-img-top object-fit-cover" alt={img} 
                 style={{
                     viewTransitionName: `blog-${id}`,

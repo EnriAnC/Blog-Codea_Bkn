@@ -22,7 +22,7 @@ function App() {
     try {
       const articulosLS = JSON.parse(localStorage.getItem('blogs'))
       if (articulosLS) return articulosLS
-      const response = await fetch('../public/blogs.json');
+      const response = await fetch('/blogs.json');
       const data = await response.json();
 
       const ArticlesById = {}

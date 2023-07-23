@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { useParams } from 'react-router-dom'; // Importa useParams para obtener el ID del artículo desde la URL
 import { useBlogsContext } from '../context/blogsContext.js';
 
-const Articulo = ({ articulos }) => {
+const Articulo = () => {
 
   const { blogs } = useBlogsContext()
   // ID del artículo desde la URL utilizando useParams

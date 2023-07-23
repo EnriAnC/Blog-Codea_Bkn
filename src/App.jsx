@@ -19,7 +19,7 @@ function App() {
     <>
       <BlogsProvider>
       <Navbar />
-        <main className="container-sm" id="main" style={{paddingTop: "56px"}}>
+        <main className="container" id="main" style={{paddingTop: "56px"}}>
           <Routes>
             <Route path="/" element={ <Inicio /> } />
             <Route path="/crear-articulo" element={ <NuevoArticulo /> } />

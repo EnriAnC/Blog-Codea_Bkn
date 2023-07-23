@@ -17,7 +17,7 @@ const Articulo = ({ articulos }) => {
   }
 
   useEffect(()=>{
-    window.scrollTo({top:0})
+    window.scrollTo(0, 0)
   },[])
 
   // Extrae los detalles del artículo

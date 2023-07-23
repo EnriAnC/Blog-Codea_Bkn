@@ -1,3 +1,8 @@
+*{
+  scroll-behavior: unset !important;
+}
+
+
 main{
   overflow-x: hidden;
 }

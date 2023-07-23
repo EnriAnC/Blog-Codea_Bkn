@@ -10,6 +10,8 @@ const BlogsProvider = ({ children }) => {
   
     useEffect(() => {
 
+      if (Object.keys(blogs).length > 0) return
+
       const blogsLS = JSON.parse(localStorage.getItem('blogs'));
 
       if (Boolean(blogsLS)) return

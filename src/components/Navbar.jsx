@@ -1,14 +1,14 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { flushSync } from 'react-dom';
 
 const Navbar = () => { 
 
     const navigate = useNavigate()
-    const blogRef = useRef()
+    const [blogY, setBlogY] = useState()
 
     const handleViewTransition = (to) => (ev) => {
-        if (!document.startViewTransition) return;
+        if (!Boolean(document.startViewTransition)) return;
         ev.preventDefault();
         document.startViewTransition(() => {
             flushSync(() => {
@@ -18,29 +18,28 @@ const Navbar = () => {
     };
 
     useEffect(()=>{
-        console.log(window.scrollY ) 
         let id = location.pathname.split('articulo');
         id = id[1] ? id[1].split('/')[1] : null
         if (!Boolean(id)) return 
-        blogRef.current = window.scrollY
+        setBlogY(window.scrollY)
     }, [location.pathname])
 
     useEffect(()=>{
-        console.log(window.scrollY ) 
-        // blogRef.current = document.getElementById(`blog_${blogRef.current}`).scrollTop
-        window.scroll(0, blogRef.current)
-    }, [location.pathname, blogRef.current])
+        window.scroll(0, blogY)
+    }, [location.pathname, blogY])
     
 
 
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top z-3"
             style={{viewTransitionName:"nav"}}
-            >
+            >   
             <div className="container-fluid">
-                <Link className="navbar-brand logo_blog" to="/" onClick={handleViewTransition('/')}
-                data-bs-toggle="collapse">
-                    <span>Blog</span> <span className="blinking-text top-500"> | </span> <span>Codea_BKN</span>
+                <Link className="navbar-brand logo_blog" to="/"
+                onClick={handleViewTransition('/')}>
+                    <span>Blog</span> 
+                    <span className="blinking-text top-500"> | </span> 
+                    <span>Codea_BKN</span>
                 </Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -50,18 +49,17 @@ const Navbar = () => {
                         <li className="nav-item">
                             <Link className="nav-link active" to="/" 
                             onClick={handleViewTransition('/')}
-                            data-bs-toggle="collapse" data-bs-target="#navbarNav"
                             >Inicio</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="crear-articulo"
                             onClick={handleViewTransition('/crear-articulo')}
-                            data-bs-toggle="collapse" data-bs-target="#navbarNav">Crear articulo</Link>
+                            >Crear articulo</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="sobre-mi"
                             onClick={handleViewTransition('/calculadora-factorial')}
-                            data-bs-toggle="collapse" data-bs-target="#navbarNav">Calculadora Factorial</Link>
+                            >Calculadora Factorial</Link>
                         </li>
                     </ul>
                 </div>

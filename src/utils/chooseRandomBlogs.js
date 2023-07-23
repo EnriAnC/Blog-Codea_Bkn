@@ -2,7 +2,7 @@ export default (blogs, n) => {
     const ids = Object.values(blogs).map(blog=>blog.id),
         min = Math.min(...ids),
         max = Math.max(...ids)
-    const randomBlogs = [],
+    const randomBlogs = {},
         randomIds = []
     for (let i = 1; i <= n; i++) {
         let randomId = Math.floor(Math.random() * (max - min + 1) + min)
@@ -10,7 +10,7 @@ export default (blogs, n) => {
             randomId = Math.floor(Math.random() * (max - min + 1) + min)
         }
         randomIds.push(randomId)
-        randomBlogs.push(blogs[randomId])
+        randomBlogs[randomId] = blogs[randomId]
     }
     return randomBlogs
 }

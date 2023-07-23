@@ -1,16 +1,14 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import chooseRandomBlogs from '../utils/chooseRandomBlogs.js'
+import { useBlogsContext } from '../context/blogsContext.js';
+import CarouselItem from './CarouselItem.jsx';
 
-const Carousel = ({blogs}) => {
+const Carousel = () => {
 
-    const [randomBlogs, setRandomBlogs] = useState([]);
+    const { blogs } = useBlogsContext()
 
   // Memorizamos el resultado de la función chooseRandomBlogs
     const memoizedRandomBlogs = useMemo(() => chooseRandomBlogs(blogs, 3), [blogs]);
-
-    useEffect(() => {
-        setRandomBlogs(memoizedRandomBlogs);
-    }, [memoizedRandomBlogs]);
 
   return (
 
@@ -23,15 +21,8 @@ const Carousel = ({blogs}) => {
         <div className="carousel-inner d-flex align-items-center"
          style={{aspectRatio: "16 / 8", }}>
             {
-                randomBlogs.map((blog, i)=>(
-                    <div key={i} className={`carousel-item ${i===0 ? 'active': ''}`} 
-                    data-bs-interval="10000"
-                    style={{height:"100%"}}>
-                        <img src={blog.img} className="d-block w-100 h-100 object-fit-cover" alt="..."/>
-                        <div className="carousel-caption d-none d-md-block">
-                            <h5 className='text-white bg-black py-2 m-0'>{blog.title}</h5>
-                        </div>
-                    </div>
+                Object.values(memoizedRandomBlogs).map((blog, i)=>(
+                    <CarouselItem key={i} blog={blog} index={i}/>
                 ))
             }
         </div>

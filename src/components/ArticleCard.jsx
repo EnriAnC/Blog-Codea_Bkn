@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { memo, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { flushSync } from 'react-dom';
 
@@ -53,4 +53,4 @@ const Card = ({articulo}) => {
     )
 }
 
-export default Card
+export default memo(Card)

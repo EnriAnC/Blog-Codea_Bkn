@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useParams } from 'react-router-dom'; // Importa useParams para obtener el ID del artículo desde la URL
 import { useBlogsContext } from '../context/blogsContext.js';
 
 const Articulo = ({ articulos }) => {
 
   const { blogs } = useBlogsContext()
-  // Obtén el ID del artículo desde la URL utilizando useParams
+  // ID del artículo desde la URL utilizando useParams
   const { id } = useParams();
 
   // Busca el artículo correspondiente en el array de artículos
@@ -50,4 +50,4 @@ const Articulo = ({ articulos }) => {
   );
 };
 
-export default Articulo;
+export default memo(Articulo);

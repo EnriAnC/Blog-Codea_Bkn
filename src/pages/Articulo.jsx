@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom'; // Importa useParams para obtener el ID del artículo desde la URL
+import { useBlogsContext } from '../context/blogsContext.js';
 
 const Articulo = ({ articulos }) => {
+
+  const { blogs } = useBlogsContext()
   // Obtén el ID del artículo desde la URL utilizando useParams
   const { id } = useParams();
 
   // Busca el artículo correspondiente en el array de artículos
-  const articulo = articulos[id]
+  const articulo = blogs[id]
 
   // Si no se encuentra el artículo, puedes mostrar un mensaje de error o redirigir a una página de 404
   if (!articulo) {
@@ -26,7 +29,7 @@ const Articulo = ({ articulos }) => {
       <div className='row gx-0 gap-4 py-3'>
         <img
           className='img-articulo-size col-12 col-md-6'
-          src={`../${img}`} 
+          src={img.includes("data:image") ? img : `../${img}`} 
           alt="imagen_articulo" 
           style={{viewTransitionName: `blog-${id}`, minHeight:"220px"}}/>
         <p className='col fs-3'

@@ -31,18 +31,20 @@ const Card = ({articulo}) => {
                         viewTransitionName: `blog-${id}`,
                     }}/>
 
-                <h5 className='card-title px-3 pt-2' style={{viewTransitionName:`title-${id}`}}>{title}</h5>
+                <h5 className='card-title px-3 pt-2' 
+                style={{viewTransitionName:`title-${id}`}}>
+                    {title}
+                </h5>
                 <div className="card-body">
-                    <p className="card-text"
+                    <p className="card-text fs-6 truncated-text d-inline"
                         style={{
                             viewTransitionName: `body-${id}`,
                         }}>
-                            {description}
-                    </p>
+                            {description.length > 100 ? description.slice(0, 100)+'...' : description}</p>
                     
                 </div>
                 <div className="card-footer d-flex justify-content-between">
-                    <span>{author}</span> <span>{date}</span>
+                    <span style={{fontSize:".75rem"}}>{author}</span> <span style={{fontSize:".75rem"}}>{date}</span>
                 </div>
             </div>
         </Link>

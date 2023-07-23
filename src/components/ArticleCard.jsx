@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { flushSync } from 'react-dom';
 
@@ -14,17 +14,22 @@ const Card = ({articulo}) => {
     
         document.startViewTransition(() => {
             flushSync(() => {
-                navigate(`articulo/${id}`);
+                navigate(`articulo/${id}`, {state:{id}});
             });
         });
     } 
+
+    useEffect(()=>{
+        const blog = document.getElementById(`blog_${id}`)
+        window.scrollTo(0, blog.offsetTop)
+    }, navigate)
     
     return (
         <Link
             className="nav-link active" 
             to={`articulo/${id}`}
             onClick={handleCardClick}>
-            <div className="card p-0 " style={{cursor: "pointer", height:"400px", width:"100%"}}>
+            <div id={`blog_${id}`} className="card p-0 " style={{cursor: "pointer", height:"400px", width:"100%"}}>
                 <img src={img} 
                     className="img-articulo-size card-img-top" alt={img} 
                     style={{

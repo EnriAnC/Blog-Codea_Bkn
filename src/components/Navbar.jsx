@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { flushSync } from 'react-dom';
 
@@ -9,7 +9,7 @@ const Navbar = () => {
     const handleViewTransition = (to) => (ev) => {
         if (!document.startViewTransition) return;
         ev.preventDefault();
-    
+        console.log(ev)
         document.startViewTransition(() => {
             flushSync(() => {
                 navigate(to);

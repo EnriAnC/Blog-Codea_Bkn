@@ -19,11 +19,6 @@ const Card = ({articulo}) => {
         });
     } 
 
-    useEffect(()=>{
-        const blog = document.getElementById(`blog_${id}`)
-        window.scrollTo(0, blog.offsetTop)
-    }, navigate)
-    
     return (
         <Link
             className="nav-link active" 

@@ -12,7 +12,7 @@ const Inicio = ({}) => {
         <h2>Articulos recientes</h2>
         <div className="grid-width-responsive-260px400px">
             {Object.values(blogs).map(articulo=>(
-                <Card key={articulo.id} articulo={articulo}/>
+                <Card key={articulo.id} id={`blog_${articulo.id}`} articulo={articulo}/>
             ))}
         </div>
 

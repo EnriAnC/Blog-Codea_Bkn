@@ -17,8 +17,8 @@ function App() {
 
   return (
     <>
-      <Navbar />
       <BlogsProvider>
+      <Navbar />
         <main className="container-sm" id="main" style={{paddingTop: "56px"}}>
           <Routes>
             <Route path="/" element={ <Inicio /> } />
@@ -29,7 +29,7 @@ function App() {
         </main> 
       </BlogsProvider>
         
-      {/* <Footer /> */}
+      <Footer />
     </>
   )
 }

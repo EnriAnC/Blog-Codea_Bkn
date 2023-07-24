@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import FormBlog from '../components/FormBlog'
 
-const NuevoArticulo = () => {
+const NuevoBlog = () => {
 
   useEffect(()=>{
     window.scroll(0, 0)
@@ -14,4 +14,4 @@ const NuevoArticulo = () => {
   )
 }
 
-export default NuevoArticulo
+export default NuevoBlog

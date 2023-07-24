@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react'
 import { useBlogsContext } from '../context/blogs/blogsContext'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
-const Modal = ({showModal, formData, setShowModal }) => {
+const FormModal = ({showModal, formData, setShowModal }) => {
 
     const { dispatch } = useBlogsContext()
 
@@ -12,7 +12,7 @@ const Modal = ({showModal, formData, setShowModal }) => {
 
     const handleSubmit = () => {
         dispatch({type:"added", payload:formData})
-        alert('Confirmado!')
+        alert('Nuevo blog agregado!, se rediccionará a la página de inicio')
         setShowModal(false)
         navigate('/')
     }
@@ -56,4 +56,4 @@ const Modal = ({showModal, formData, setShowModal }) => {
   )
 }
 
-export default Modal
+export default FormModal

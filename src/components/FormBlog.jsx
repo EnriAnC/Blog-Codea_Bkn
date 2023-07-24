@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Modal from './Modal.jsx';
+import FormModal from './FormModal.jsx';
 
 const blogMock = {
   id: undefined,
@@ -23,20 +23,27 @@ const FormBlog = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const submitData = Object.fromEntries(new FormData(e.target))
-        setFormData((formData=>({...formData, ...submitData, img: formData.img}))) 
+        setFormData((prevFormData=>{
+          if (!prevFormData.img) prevFormData.img = 'bg-x.png'
+          return {...prevFormData, ...submitData, img: prevFormData.img}
+        })) 
         setShowModal(true)
     };
 
     const handleInputChange = (e) => {
         if (e.target.name === 'img') {
           const file = e.target.files[0];
-          if (file) {
+          const MAX_SIZE_KB = 256
+          if (file && file.size <= MAX_SIZE_KB * 1024) {
             // Leemos la imagen con FileReader y la guardamos en el estado formData
             const reader = new FileReader();
             reader.onloadend = () => {
               setFormData(formData=>({...formData, img:reader.result}))
             };
             reader.readAsDataURL(file);
+          } else {
+            alert('Sobrepasa los 256KB')
+            e.target.value = ""
           }
         }
         
@@ -45,7 +52,7 @@ const FormBlog = () => {
     
       return (
         <>
-          <Modal showModal={showModal} setShowModal={setShowModal} formData={formData} />
+          <FormModal showModal={showModal} setShowModal={setShowModal} formData={formData} />
           <form onSubmit={handleSubmit} className='d-flex flex-column gap-3'>
             <legend className='text-center mt-4'>Crear nuevo articulo</legend>
 
@@ -64,6 +71,7 @@ const FormBlog = () => {
             </div>
 
             <div className="form-control">
+                <label htmlFor="img" className='fs-6 p-1 text-black-50'>MAX: 256kb; Se guarda en LocalStorage</label>
                 <input type="file" className="form-control" name="img" 
                 accept="image/jpeg, image/png, image/gif"
                 onChange={handleInputChange}/>

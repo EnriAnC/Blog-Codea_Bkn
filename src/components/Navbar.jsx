@@ -1,20 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { flushSync } from 'react-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import useViewTransition from '../customHooks/useViewTransition';
 
 const Navbar = () => { 
 
-    const navigate = useNavigate()
-
-    const handleViewTransition = (to) => (ev) => {
-        if (!Boolean(document.startViewTransition)) return;
-        ev.preventDefault();
-        document.startViewTransition(() => {
-            flushSync(() => {
-                navigate(to);
-            });
-        });
-    };
+    const {handleViewTransition} = useViewTransition()
 
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top z-3"

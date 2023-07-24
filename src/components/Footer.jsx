@@ -1,20 +1,10 @@
 import React from 'react'
-import { flushSync } from 'react-dom';
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import useViewTransition from '../customHooks/useViewTransition';
 
 const Footer = () => {
 
-  const navigate = useNavigate()
-
-  const handleViewTransition = (to) => (ev) => {
-      if (!document.startViewTransition) return;
-      ev.preventDefault();
-      document.startViewTransition(() => {
-          flushSync(() => {
-              navigate(to);
-          });
-      });
-  };
+  const {handleViewTransition} = useViewTransition()
 
   return (
     <footer className="py-3 position-relative bottom-0 mt-5" style={{backgroundColor:"orange"}}>

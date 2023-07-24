@@ -1,26 +1,19 @@
-import React, { memo, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
-import { flushSync } from 'react-dom';
+import React, { memo } from 'react'
+import { Link } from 'react-router-dom';
 import { useScrollContext } from '../context/scroll/ScrollContext';
+import useViewTransition from '../customHooks/useViewTransition';
 
-const Card = ({articulo}) => {
+const BlogCard = ({articulo}) => {
 
     let { id, title, description, img, author, date, tags, likes, comments } = articulo;
 
     const { setScrollY } = useScrollContext();
 
-    const navigate = useNavigate();
+    const {handleViewTransition} = useViewTransition()
     
     const handleCardClick = (ev) => {
         setScrollY(window.scrollY)
-        if (!document.startViewTransition) return;
-        ev.preventDefault();
-        history.pushState({id}, null, '')
-        document.startViewTransition(() => {
-            flushSync(() => {
-                navigate(`articulo/${id}`, {state:{id}});
-            });
-        });
+        handleViewTransition(`blog/${id}`)(ev)
     } 
 
     return (
@@ -29,22 +22,18 @@ const Card = ({articulo}) => {
             to={`articulo/${id}`}
             onClick={handleCardClick}>
             <div id={`blog_${id}`} className="card p-0 " style={{cursor: "pointer", height:"400px", width:"100%"}}>
-                {img.split('.')[1] === 'webp' 
-                ? (
-                    <img src={`${img.split('.')[0]}.png`} 
-                    className="img-articulo-size card-img-top" alt={img} 
-                    style={{
-                        viewTransitionName: `blog-${id}`,
-                    }}/>
-                )
-                : (
-                    <img src={img} 
-                    className="img-articulo-size card-img-top" alt={img} 
-                    style={{
-                        viewTransitionName: `blog-${id}`,
-                    }}/>
-                )
-                
+                {
+                    img.split('.')[1] === 'webp' 
+                    ? (<img src={`${img.split('.')[0]}.png`} 
+                        className="img-articulo-size card-img-top" alt={img} 
+                        style={{
+                            viewTransitionName: `blog-${id}`,
+                        }}/>)
+                    : (<img src={img ??= "bg-x.png"} 
+                        className="img-articulo-size card-img-top" alt={img} 
+                        style={{
+                            viewTransitionName: `blog-${id}`,
+                        }}/>)
                 }
 
                 <h5 className='card-title px-3 pt-2' 
@@ -69,4 +58,4 @@ const Card = ({articulo}) => {
     )
 }
 
-export default memo(Card)
+export default memo(BlogCard)

@@ -2,7 +2,7 @@ import React, { memo, useLayoutEffect } from 'react';
 import { useParams } from 'react-router-dom'; // Importa useParams para obtener el ID del artículo desde la URL
 import { useBlogsContext } from '../context/blogs/blogsContext.js';
 
-const Articulo = () => {
+const Blog = () => {
 
   const { blogs } = useBlogsContext()
   // ID del artículo desde la URL utilizando useParams
@@ -39,10 +39,14 @@ const Articulo = () => {
         }}>{description}</p>
         <p className='fs-4'>{body}</p>
       
-        <p>{author}</p> 
-        <p>{date}</p>
-        <p>{tags}</p>
-        <p>{likes}</p>
+        <div className="d-flex justify-content-between">
+          <p>Autor: {author}</p> 
+          <p>{date}</p>
+        </div>
+        <div className="d-flex justify-content-between">
+          <p className='border rounded-5 py-1 ps-3 pe-2 '>{likes} <span role="icon" aria-label="Me gusta">👍</span></p>
+          <p className='border rounded-5 py-1 ps-3 pe-2 '><i>Tags: {tags ?? tags.join(', ')}</i></p>
+        </div>
         {/* <p>{comments}</p>0 */}
         
       </div>
@@ -50,4 +54,4 @@ const Articulo = () => {
   );
 };
 
-export default memo(Articulo)
+export default memo(Blog)

@@ -1,5 +1,5 @@
   import React, { memo, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
-  import Card from '../components/ArticleCard'
+  import BlogCard from '../components/BlogCard'
   import { useBlogsContext } from '../context/blogs/blogsContext.js'
   import Carousel from '../components/Carousel'
 import { useScrollContext } from '../context/scroll/ScrollContext'
@@ -26,7 +26,7 @@ import { useScrollContext } from '../context/scroll/ScrollContext'
           <h2>Articulos recientes</h2>
           <div className="grid-width-responsive-260px400px">
               {blogList.map(articulo=>(
-                  <Card key={articulo.id} id={`blog_${articulo.id}`} articulo={articulo}/>
+                  <BlogCard key={articulo.id} id={`blog_${articulo.id}`} articulo={articulo}/>
               ))}
           </div>
 

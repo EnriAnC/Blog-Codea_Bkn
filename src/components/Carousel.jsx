@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useMemo, useRef } from 'react'
+import React, { memo, useMemo } from 'react'
 import { useBlogsContext } from '../context/blogs/blogsContext.js';
 import CarouselItem from './CarouselItem.jsx';
 

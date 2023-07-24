@@ -10,17 +10,27 @@ const OffcanvasNavbar = () => {
     <nav className="navbar bg-transparent fixed-top z-1"
     style={{viewTransitionName:"offcanvasNav"}}>
         <div className="container-fluid">
-            <Link className="navbar-brand logo_blog" to="/"
+            <Link className="navbar-brand logo_blog me-0" to="/"
             onClick={handleViewTransition('/')}
-            style={{viewTransitionName:"ttt"}}>
-                <span>Codea<b className="blinking-text top-500"> _ </b>BKN</span>
+            style={{viewTransitionName:"offcanvasNavLogo", textShadow:"0 0 20px white, 0 0 5px white"}}>
+                <span>Blog</span> 
+                <span className="blinking-text top-500"> | </span> 
             </Link>
-            <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <button className="navbar-toggler shadow-sm" 
+            type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar" 
+            aria-label="Toggle navigation"
+            style={{viewTransitionName:"offcanvasNavToggleButton"}}>
                 <span className="navbar-toggler-icon"></span>
             </button>
             <div className="offcanvas offcanvas-end" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <div className="offcanvas-header">
-                <h5 className="offcanvas-title" id="offcanvasNavbarLabel">Codea_BKN</h5>
+                <h5 className="offcanvas-title fw-bolder text-uppercase" id="offcanvasNavbarLabel">
+                    <span>Blog</span> 
+                    <span className="blinking-text top-500"> | </span> 
+                    <span>Codea_BKN</span>
+                </h5>
                 <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div className="offcanvas-body">

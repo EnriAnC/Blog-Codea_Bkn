@@ -12,7 +12,7 @@ const Carousel = () => {
     
     return (
 
-        <div id="blogsCarousel" className="carousel carousel-dark slide object-fit-contain">
+        <div id="blogsCarousel" className="carousel carousel-dark slide object-fit-contain z-0">
             <div className="carousel-indicators">
                 <button type="button" data-bs-target="#blogsCarousel" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#blogsCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>

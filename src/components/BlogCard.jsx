@@ -19,7 +19,7 @@ const BlogCard = ({articulo}) => {
     return (
         <Link
             className="nav-link active" 
-            to={`articulo/${id}`}
+            to={`blog/${id}`}
             onClick={handleCardClick}>
             <div id={`blog_${id}`} className="card p-0 " style={{cursor: "pointer", height:"400px", width:"100%"}}>
                 {

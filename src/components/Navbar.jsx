@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { flushSync } from 'react-dom';
 
 const Navbar = () => { 
 
     const navigate = useNavigate()
-    const [blogY, setBlogY] = useState()
 
     const handleViewTransition = (to) => (ev) => {
         if (!Boolean(document.startViewTransition)) return;
@@ -16,19 +15,6 @@ const Navbar = () => {
             });
         });
     };
-
-    useEffect(()=>{
-        let id = location.pathname.split('articulo');
-        id = id[1] ? id[1].split('/')[1] : null
-        if (!Boolean(id)) return 
-        setBlogY(window.scrollY)
-    }, [location.pathname])
-
-    useEffect(()=>{
-        window.scroll(0, blogY)
-    }, [location.pathname, blogY])
-    
-
 
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top z-3"

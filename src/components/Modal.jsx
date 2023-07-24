@@ -1,9 +1,12 @@
 import React, { useEffect, useRef } from 'react'
-import { useBlogsContext } from '../context/blogsContext'
+import { useBlogsContext } from '../context/blogs/blogsContext'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 const Modal = ({showModal, formData, setShowModal }) => {
 
     const { dispatch } = useBlogsContext()
+
+    const navigate = useNavigate()
 
     const modalRef = useRef()
 
@@ -11,6 +14,7 @@ const Modal = ({showModal, formData, setShowModal }) => {
         dispatch({type:"added", payload:formData})
         alert('Confirmado!')
         setShowModal(false)
+        navigate('/')
     }
 
     useEffect(()=>{

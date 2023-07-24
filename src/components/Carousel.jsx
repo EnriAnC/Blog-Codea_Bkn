@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useMemo, useRef } from 'react'
-import { useBlogsContext } from '../context/blogsContext.js';
+import { useBlogsContext } from '../context/blogs/blogsContext.js';
 import CarouselItem from './CarouselItem.jsx';
 
 const Carousel = () => {

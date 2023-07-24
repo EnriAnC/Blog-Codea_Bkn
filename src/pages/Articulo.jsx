@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { useParams } from 'react-router-dom'; // Importa useParams para obtener el ID del artículo desde la URL
-import { useBlogsContext } from '../context/blogsContext.js';
+import { useBlogsContext } from '../context/blogs/blogsContext.js';
 
 const Articulo = () => {
 
@@ -38,13 +38,13 @@ const Articulo = () => {
             viewTransitionName: `body-${id}`,
         }}>{description}</p>
         <p className='fs-4'>{body}</p>
-        <p>
-            <span>{author}</span> 
-            <span>{date}</span>
-            <span>{tags}</span>
-            <span>{likes}</span>
-            {/* <span>{comments}</span>0 */}
-        </p>
+      
+        <p>{author}</p> 
+        <p>{date}</p>
+        <p>{tags}</p>
+        <p>{likes}</p>
+        {/* <p>{comments}</p>0 */}
+        
       </div>
     </>
   );

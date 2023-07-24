@@ -1,13 +1,22 @@
-  import React, { memo, useMemo } from 'react'
+  import React, { memo, useEffect, useMemo, useRef, useState } from 'react'
   import Card from '../components/ArticleCard'
-  import { useBlogsContext } from '../context/blogsContext.js'
+  import { useBlogsContext } from '../context/blogs/blogsContext.js'
   import Carousel from '../components/Carousel'
+import { useScrollContext } from '../context/scroll/ScrollContext'
 
-  const Inicio = ({}) => {
+  const Inicio = () => {
+
+    const { scrollY, setScrollY } = useScrollContext();
 
     const { blogs } = useBlogsContext()
-
+    
     const blogList = useMemo(() => Object.values(blogs), [blogs]);
+
+    useEffect(()=>{
+      if (!scrollY) return window.scrollTo(0, 0)
+      window.scrollTo(0, scrollY)
+      setScrollY(null)
+    }, []) 
 
     return (
       <div className='py-2' id='articles-container'>

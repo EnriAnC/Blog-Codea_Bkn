@@ -11,22 +11,25 @@ import "bootstrap/dist/css/bootstrap.min.css"
 
 
 import Articulo from "./pages/Articulo"
-import BlogsProvider from "./context/BlogsProvider"
+import BlogsProvider from "./context/blogs/BlogsProvider"
+import { ScrollProvider } from "./context/scroll/ScrollContext"
 
 function App() {
 
   return (
     <>
-      <BlogsProvider>
       <Navbar />
-        <main className="container" id="main" style={{paddingTop: "56px"}}>
-          <Routes>
-            <Route path="/" element={ <Inicio /> } />
-            <Route path="/crear-articulo" element={ <NuevoArticulo /> } />
-            <Route path="/calculadora-factorial" element={ <CalculadoraFactorial /> } />
-            <Route path="/articulo/:id" element={ <Articulo /> } />
-          </Routes>
-        </main> 
+      <BlogsProvider>
+        <ScrollProvider>
+          <main className="container" id="main" style={{paddingTop: "56px"}}>
+            <Routes>
+              <Route path="/" element={ <Inicio /> } />
+              <Route path="/crear-articulo" element={ <NuevoArticulo /> } />
+              <Route path="/calculadora-factorial" element={ <CalculadoraFactorial /> } />
+              <Route path="/articulo/:id" element={ <Articulo /> } />
+            </Routes>
+          </main> 
+        </ScrollProvider>
       </BlogsProvider>
         
       <Footer />

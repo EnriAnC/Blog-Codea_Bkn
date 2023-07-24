@@ -1,17 +1,21 @@
 import React, { memo, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { flushSync } from 'react-dom';
+import { useScrollContext } from '../context/scroll/ScrollContext';
 
 const Card = ({articulo}) => {
 
     let { id, title, description, img, author, date, tags, likes, comments } = articulo;
 
+    const { setScrollY } = useScrollContext();
+
     const navigate = useNavigate();
     
     const handleCardClick = (ev) => {
+        setScrollY(window.scrollY)
         if (!document.startViewTransition) return;
         ev.preventDefault();
-    
+        history.pushState({id}, null, '')
         document.startViewTransition(() => {
             flushSync(() => {
                 navigate(`articulo/${id}`, {state:{id}});

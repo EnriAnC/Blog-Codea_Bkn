@@ -29,11 +29,23 @@ const Card = ({articulo}) => {
             to={`articulo/${id}`}
             onClick={handleCardClick}>
             <div id={`blog_${id}`} className="card p-0 " style={{cursor: "pointer", height:"400px", width:"100%"}}>
-                <img src={img} 
+                {img.split('.')[1] === 'webp' 
+                ? (
+                    <img src={`${img.split('.')[0]}.png`} 
                     className="img-articulo-size card-img-top" alt={img} 
                     style={{
                         viewTransitionName: `blog-${id}`,
                     }}/>
+                )
+                : (
+                    <img src={img} 
+                    className="img-articulo-size card-img-top" alt={img} 
+                    style={{
+                        viewTransitionName: `blog-${id}`,
+                    }}/>
+                )
+                
+                }
 
                 <h5 className='card-title px-3 pt-2' 
                 style={{viewTransitionName:`title-${id}`}}>

@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useLayoutEffect } from 'react';
 import { useParams } from 'react-router-dom'; // Importa useParams para obtener el ID del artículo desde la URL
 import { useBlogsContext } from '../context/blogs/blogsContext.js';
 
@@ -16,9 +16,10 @@ const Articulo = () => {
     return <div>El artículo no existe.</div>;
   }
 
-  const handleOnLoad = () => {
+
+  useLayoutEffect(()=>{
     window.scroll(0, 0)
-  }
+  },[])
 
   // Extrae los detalles del artículo
   const { title, description, body, img, author, date, tags, likes, comments } = articulo;
@@ -31,8 +32,7 @@ const Articulo = () => {
           className='img-articulo-size col-12 col-md-6'
           src={img?.includes("data:image") ? img : `../${img}`} 
           alt="imagen_articulo" 
-          style={{viewTransitionName: `blog-${id}`, minHeight:"220px"}}
-          onLoad={handleOnLoad}/>
+          style={{viewTransitionName: `blog-${id}`, minHeight:"220px"}}/>
         <p className='col fs-3'
           style={{
             viewTransitionName: `body-${id}`,

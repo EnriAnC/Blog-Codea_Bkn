@@ -29,7 +29,7 @@ const Articulo = () => {
       <div className='row gx-0 gap-4 py-3'>
         <img
           className='img-articulo-size col-12 col-md-6'
-          src={img.includes("data:image") ? img : `../${img}`} 
+          src={img?.includes("data:image") ? img : `../${img}`} 
           alt="imagen_articulo" 
           style={{viewTransitionName: `blog-${id}`, minHeight:"220px"}}
           onLoad={handleOnLoad}/>
@@ -50,4 +50,4 @@ const Articulo = () => {
   );
 };
 
-export default memo(Articulo);
+export default memo(Articulo)

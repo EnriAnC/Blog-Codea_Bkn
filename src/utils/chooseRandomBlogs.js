@@ -1,16 +1,22 @@
 export default (blogs, n) => {
-    const ids = Object.values(blogs).map(blog=>blog.id),
-        min = Math.min(...ids),
-        max = Math.max(...ids)
-    const randomBlogs = {},
-        randomIds = []
-    for (let i = 1; i <= n; i++) {
-        let randomId = Math.floor(Math.random() * (max - min + 1) + min)
-        while (randomIds.includes(randomId)) {
-            randomId = Math.floor(Math.random() * (max - min + 1) + min)
+
+    const filter = Object.values(blogs).map(({likes, id})=>([likes, id])),
+        sortedBlogs = filter.sort();
+    const choosedBlogs = [],
+        ids = []
+    
+    const chargeChoosedBlogs = function() {
+        for (let i = 1; i <= n; i++) {
+            const id = (sortedBlogs.pop())[1]
+            ids.push(id)
+            choosedBlogs.push(blogs[id])
         }
-        randomIds.push(randomId)
-        randomBlogs[randomId] = blogs[randomId]
     }
-    return randomBlogs
+
+    return function() {
+        if (choosedBlogs.length > 0) return choosedBlogs
+        chargeChoosedBlogs()
+        return choosedBlogs
+    }()
+
 }

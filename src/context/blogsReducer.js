@@ -3,6 +3,12 @@ function blogsReducer(blogs, action) {
   const nextId = Object.keys(blogs).length > 0 ? Math.max(...Object.keys(blogs).map(Number)) + 1 : 0;
 
   switch (action.type) {
+    case 'load': {
+      return {
+        ...blogs,
+        ...action.payload
+      };
+    }
     case 'added': {
       const result = { 
         ...blogs, 

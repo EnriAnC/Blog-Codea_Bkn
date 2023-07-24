@@ -1,50 +1,52 @@
-import React, { useEffect } from 'react'
-import { useBlogsContext } from '../context/blogsContext.js';
+import React, { useState } from 'react'
+import Modal from './Modal.jsx';
+
+const blogMock = {
+  id: undefined,
+  title: undefined,
+  description: undefined,
+  body: undefined,
+  img: undefined,
+  author: undefined,
+  date: new Date().toUTCString(),
+  tags: [],
+  likes: 0,
+  comments: []
+}
 
 const FormBlog = () => {
 
-    const { dispatch } = useBlogsContext()
+    const [formData, setFormData] = useState(blogMock)
 
-    const blogMock = {
-        id: undefined,
-        title: undefined,
-        description: undefined,
-        body: undefined,
-        img: undefined,
-        author: undefined,
-        date: new Date().toUTCString(),
-        tags: [],
-        likes: 0,
-        comments: []
-    }
+    const [showModal, setShowModal] = useState(false);
     
     const handleSubmit = async (e) => {
         e.preventDefault();
         const submitData = Object.fromEntries(new FormData(e.target))
-        const blog = {...blogMock, ...submitData, img: blogMock.img}
-        dispatch({type:"added", payload:blog})
+        setFormData((formData=>({...formData, ...submitData, img: formData.img}))) 
+        setShowModal(true)
     };
 
     const handleInputChange = (e) => {
         if (e.target.name === 'img') {
-            console.log(e.target)
           const file = e.target.files[0];
-          console.log(file)
           if (file) {
             // Leemos la imagen con FileReader y la guardamos en el estado formData
             const reader = new FileReader();
             reader.onloadend = () => {
-              blogMock.img = reader.result
+              setFormData(formData=>({...formData, img:reader.result}))
             };
             reader.readAsDataURL(file);
           }
-        } else {
-          // Aquí actualizas el estado formData con los valores de los otros campos del formulario
         }
+        
       };
+
     
       return (
-        <form onSubmit={handleSubmit} className='d-flex flex-column gap-3'>
+        <>
+          <Modal showModal={showModal} setShowModal={setShowModal} formData={formData} />
+          <form onSubmit={handleSubmit} className='d-flex flex-column gap-3'>
             <legend className='text-center mt-4'>Crear nuevo articulo</legend>
 
             <div className="form-floating">
@@ -79,6 +81,8 @@ const FormBlog = () => {
             
             <button className='btn btn-dark' type="submit">Create Blog Entry</button>
         </form>
+        </>
+        
       );
 }
 

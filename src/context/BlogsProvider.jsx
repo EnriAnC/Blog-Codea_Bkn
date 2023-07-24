@@ -24,12 +24,13 @@ const BlogsProvider = ({ children }) => {
         for (const articulo of data) {
             blogssById[articulo.id] = articulo;
         }
+        dispatch({ type: 'load', payload: blogssById });
         localStorage.setItem('blogs', JSON.stringify(blogssById));
       }
       fetchData()
       
       
-    }, []);
+    }, [blogs]);
   
     return (
       <BlogsContext.Provider value={{ blogs, dispatch }}>

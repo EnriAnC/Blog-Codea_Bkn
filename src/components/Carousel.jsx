@@ -1,5 +1,4 @@
-import React, { memo, useEffect, useMemo, useState } from 'react'
-import chooseRandomBlogs from '../utils/chooseRandomBlogs.js'
+import React, { memo, useEffect, useMemo, useRef } from 'react'
 import { useBlogsContext } from '../context/blogsContext.js';
 import CarouselItem from './CarouselItem.jsx';
 
@@ -8,12 +7,10 @@ const Carousel = () => {
     const { blogs } = useBlogsContext()
 
   // Memorizamos el resultado de la función chooseRandomBlogs
-    const memoizedRandomBlogs = useMemo(() => chooseRandomBlogs(blogs, 3), [blogs]);
-
-    useEffect(()=>{
-        console.log(memoizedRandomBlogs)
-    }, [memoizedRandomBlogs])
-
+    const memoizedRandomBlogs = useMemo(() => {
+        return Object.values(blogs).slice(0,3)
+    }, [blogs]);
+    
     return (
 
         <div id="carouselExampleDark" className="carousel carousel-dark slide object-fit-contain">
@@ -25,7 +22,7 @@ const Carousel = () => {
             <div className="carousel-inner d-flex align-items-center"
             style={{aspectRatio: "16 / 8", }}>
                 {
-                    Object.values(memoizedRandomBlogs).map((blog, i)=>(
+                    memoizedRandomBlogs.map((blog, i)=>(
                         <CarouselItem key={i} blog={blog} index={i}/>
                     ))
                 }

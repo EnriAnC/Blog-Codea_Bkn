@@ -53,17 +53,16 @@ const FormBlog = () => {
       return (
         <>
           <FormModal showModal={showModal} setShowModal={setShowModal} formData={formData} />
-          <form onSubmit={handleSubmit} className='d-flex flex-column gap-3'>
+          <form onSubmit={handleSubmit} className='d-flex flex-column gap-3 z-1'>
             <legend className='text-center mt-4'>Crear nuevo articulo</legend>
 
-            <div className="form-floating">
+            <div>
                 <input type="text" className="form-control" name="title" id='title' placeholder="Titulo" />
-                <label htmlFor="title">Titulo</label>
+                
             </div>
 
-            <div className="form-floating">
+            <div>
                 <input type="text" className="form-control" name="description" placeholder="Descripción" />
-                <label htmlFor="description">Descripción</label>
             </div>
 
             <div className="form-area">
@@ -77,14 +76,12 @@ const FormBlog = () => {
                 onChange={handleInputChange}/>
             </div>
 
-            <div className="form-floating">
+            <div>
                 <input type="text" className="form-control" name="author" placeholder="Autor" />
-                <label htmlFor="author">Autor</label>
             </div>
 
-            <div className="form-floating">
+            <div>
                 <input type="text" className="form-control" name="tags" placeholder="#tag1, #tag2" />
-                <label htmlFor="tags">Tags</label>
             </div>
             
             <button className='btn btn-dark' type="submit">Create Blog Entry</button>

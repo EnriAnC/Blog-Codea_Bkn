@@ -133,10 +133,12 @@ main{
 } */
 
 
-/* ::view-transition-old(nav) {
+::view-transition-old(offcanvasNavBody) {
   display: none;
+  /* animation: none; */
 }
 
-::view-transition-new(nav) {
-  animation: none;
-} */
+::view-transition-new(offcanvasNavBody) {
+  display: none;
+  /* animation: none; */
+}

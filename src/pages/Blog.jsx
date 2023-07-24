@@ -1,4 +1,4 @@
-import React, { memo, useLayoutEffect } from 'react';
+import React, { memo, useLayoutEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom'; // Importa useParams para obtener el ID del artículo desde la URL
 import { useBlogsContext } from '../context/blogs/blogsContext.js';
 
@@ -9,20 +9,26 @@ const Blog = () => {
   const { id } = useParams();
 
   // Busca el artículo correspondiente en el array de artículos
-  const articulo = blogs[id]
+  const articulo = useMemo(()=>blogs[id], [blogs])
 
   // Si no se encuentra el artículo, puedes mostrar un mensaje de error o redirigir a una página de 404
   if (!articulo) {
     return <div>El artículo no existe.</div>;
   }
 
-
+  // Extrae los detalles del artículo
+  const { title, description, body, img, author, date, tags, likes, comments } = articulo;
+  
+  const tagsString = useMemo(()=>(
+    tags.length>0 
+    ? tags.map(tag => `#${tag}`).join(', ') 
+    : '---'), 
+    [tags]
+  );
+  
   useLayoutEffect(()=>{
     window.scroll(0, 0)
   },[])
-
-  // Extrae los detalles del artículo
-  const { title, description, body, img, author, date, tags, likes, comments } = articulo;
 
   return (
     <>
@@ -45,7 +51,7 @@ const Blog = () => {
         </div>
         <div className="d-flex justify-content-between">
           <p className='border rounded-5 py-1 ps-3 pe-2 '>{likes} <span role="icon" aria-label="Me gusta">👍</span></p>
-          <p className='border rounded-5 py-1 ps-3 pe-2 '><i>Tags: {tags ? tags.join(', ') : '---'}</i></p>
+          <p className='border rounded-5 py-1 ps-3 pe-2 '><i>Tags: {tagsString}</i></p>
         </div>
         {/* <p>{comments}</p>0 */}
         

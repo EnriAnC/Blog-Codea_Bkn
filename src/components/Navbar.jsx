@@ -9,8 +9,6 @@ const Navbar = () => {
 
     const navRef = useRef()
 
-    const offcanvasNavRef = useRef()
-
     useEffect(()=>{
         window.addEventListener('scroll', e=>{
             if (1 - window.scrollY / 48 < -1) {

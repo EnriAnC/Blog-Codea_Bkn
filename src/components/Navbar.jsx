@@ -43,7 +43,7 @@ const Navbar = () => {
                             >Crear articulo</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="sobre-mi"
+                            <Link className="nav-link" to="calculadora-factorial"
                             onClick={handleViewTransition('/calculadora-factorial')}
                             >Calculadora Factorial</Link>
                         </li>

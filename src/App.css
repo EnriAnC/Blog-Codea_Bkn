@@ -124,21 +124,22 @@ main{
 
   
 
-  /* ::view-transition-old(root),
+  ::view-transition-old(root),
 ::view-transition-new(root) {
-  animation: none;
+  /* animation: none;  */
   mix-blend-mode: normal;
   height: 100%;
   overflow: clip;
-} */
+  object-fit: contain;
+}
 
 
 ::view-transition-old(offcanvasNavBody) {
-  display: none;
-  /* animation: none; */
+  /* display: none; */
+  animation: none;
 }
 
 ::view-transition-new(offcanvasNavBody) {
-  display: none;
-  /* animation: none; */
+  /* display: none; */
+  animation: none;
 }

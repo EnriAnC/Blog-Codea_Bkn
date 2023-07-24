@@ -6,6 +6,7 @@ const useViewTransition = () => {
   const navigate = useNavigate();
 
   const handleViewTransition = (to) => (ev) => {
+    if (to === location.pathname) return
     if (!Boolean(document.startViewTransition)) return;
     ev.preventDefault();
     document.startViewTransition(() => {

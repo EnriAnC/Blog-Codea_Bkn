@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom"
 import './App.css'
 
 import Inicio from './pages/Inicio.jsx'
@@ -14,6 +14,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 
 import BlogsProvider from "./context/blogs/BlogsProvider"
 import { ScrollProvider } from "./context/scroll/ScrollContext"
+import { useEffect } from "react"
 
 function App() {
 

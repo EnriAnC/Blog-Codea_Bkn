@@ -2,7 +2,7 @@
 
 BLOG|CODEA_BKN es una aplicación web de blogs que utiliza la View Transition API junto con react-router-dom para proporcionar transiciones entre páginas. Además te permite crear y administrar tus propios blogs de una manera sencilla y eficiente a traves de LocalStorage.
 
-- Preview: `https://blog-codea-bkn.netlify.app/`
+- Preview: https://blog-codea-bkn.netlify.app/
 
 ## Instalación
 

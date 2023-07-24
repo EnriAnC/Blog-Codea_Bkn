@@ -13,6 +13,10 @@ main{
   overflow-x: hidden;
 }
 
+.navbar{
+  background-color: #ffa500 !important;
+}
+
 .logo_blog{
   font-size: 1.5rem;
   font-weight: bold;
@@ -91,7 +95,7 @@ main{
 }
 
 
-/* VIEW TRANSITION API */
+/* --------VIEW TRANSITION API------------------------------------------------------------------ */
 @keyframes fade-in {
   from { opacity: 0; }
 }
